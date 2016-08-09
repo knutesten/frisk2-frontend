@@ -3,9 +3,9 @@ export function authenticateUser() {
     if (localStorage.getItem("jwt-token")) {
       callback()
     } else if (nextState.location.query.code) {
-      getJwtTokenForCode(nextState.location.query).then(token => {
+      getJwtTokenForCode(nextState.location.query).then(auth => {
         replace(nextState.location.pathname)
-        localStorage.setItem("jwt-token", token);
+        localStorage.setItem("jwt-token", auth.jwtToken);
         callback()
       })
     } else {
@@ -23,6 +23,6 @@ const redirectToOpenIdConnectAuthentication = (callback) =>
 
 const getJwtTokenForCode = query =>
   fetch(`/api/auth/token?code=${query.code}&state=${query.state}`, { method: 'GET' })
-    .then(res => res.text())
+    .then(res => res.json())
 
 
