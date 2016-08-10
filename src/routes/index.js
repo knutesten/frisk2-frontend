@@ -2,6 +2,7 @@
 import CoreLayout from '../layouts/CoreLayout/CoreLayout'
 import Home from './Home'
 import CounterRoute from './Counter'
+import Unauthorized from './Unauthorized'
 import { authenticateUser } from './auth'
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -13,7 +14,8 @@ export const createRoutes = (store) => ({
   indexRoute: Home,
   onEnter: authenticateUser(store),
   childRoutes: [
-    CounterRoute(store)
+    CounterRoute(store),
+    Unauthorized
   ]
 })
 
