@@ -1,22 +1,28 @@
 import React from 'react'
 
-export const ConsumptionTable = () => (
-  <table>
-    <thead>
-    <tr>
-      <th>User</th>
-      <th>Type</th>
-      <th>Date</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>knuffern</td>
-      <td>Ordinær</td>
-      <td>2016-01-01 19:39</td>
-    </tr>
-    </tbody>
-  </table>
-)
+class ConsumptionTable extends React.Component {
+  render() {
+    return (
+      <table>
+        <thead>
+        <tr>
+          <th>User</th>
+          <th>Type</th>
+          <th>Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        {this.props.log.map(e =>
+          <tr key={e.id}>
+            <td>{e.user.username}</td>
+            <td>{e.type.name}</td>
+            <td>{new Date(e.date).toISOString().slice(0,19).replace('T', ' ')}</td>
+          </tr>
+        )}
+        </tbody>
+      </table>
+    )
+  }
+}
 
 export default ConsumptionTable
