@@ -2,6 +2,7 @@
 // Constants
 // ------------------------------------
 export const FETCH_LOG = 'FETCH_LOG'
+export const FETCH_TYPES = 'FETCH_TYPE'
 export const FETCH_LEADERBOARD = 'FETCH_LEADERBOARD'
 
 // ------------------------------------
@@ -17,6 +18,13 @@ export function fetchLog(payload = []) {
 export function fetchLeaderboard(payload = []) {
   return {
     type: FETCH_LEADERBOARD,
+    payload
+  }
+}
+
+export function fetchTypes(payload = []) {
+  return {
+    type: FETCH_TYPES,
     payload
   }
 }
@@ -47,11 +55,43 @@ export const fetchLeaderboardAsync = () => {
   }
 }
 
+export const fetchTypesAsync = () => {
+  return (dispatch) => {
+    return new Promise((resolve) => {
+      fetch('/api/type')
+        .then(r => r.json())
+        .then(types => {
+          dispatch(fetchTypes(types))
+          resolve()
+        })
+    })
+  }
+}
+
+export const createLogConsumptionOnClick = (type) => {
+  return () =>
+    () => {
+      return new Promise((resolve) => {
+        fetch('/api/log', {
+          method: 'POST',
+          body: JSON.stringify(type),
+          headers: new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('jwt-token')}`
+          })
+        })
+        resolve()
+      })
+    }
+}
+
 export const actions = {
   fetchLog,
   fetchLogAsync,
   fetchLeaderboard,
-  fetchLeaderboardAsync
+  fetchLeaderboardAsync,
+  fetchTypes,
+  fetchTypesAsync
 }
 
 // ------------------------------------
@@ -59,7 +99,8 @@ export const actions = {
 // ------------------------------------
 const ACTION_HANDLERS = {
   [FETCH_LOG]: (state, action) => ({...state, log: action.payload}),
-  [FETCH_LEADERBOARD]: (state, action) => ({...state, leaderboard: action.payload})
+  [FETCH_LEADERBOARD]: (state, action) => ({...state, leaderboard: action.payload}),
+  [FETCH_TYPES]: (state, action) => ({...state, types: action.payload})
 }
 
 // ------------------------------------
@@ -67,7 +108,8 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 const initialState = {
   log: [],
-  leaderboard: []
+  leaderboard: [],
+  types: []
 }
 
 export default function homeReducer (state = initialState, action) {
