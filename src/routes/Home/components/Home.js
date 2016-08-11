@@ -11,17 +11,18 @@ class Home extends React.Component {
   }
 
   render() {
-    const logConsumptionContainerClasses = `${classes.logConsumptionContainer} row`;
+    const undoButtonClasses = `${classes.undoButton} button-primary`
 
     return (
       <div>
-        <div className={logConsumptionContainerClasses}>
+        <div className={classes.logConsumptionContainer}>
           <h4>Log consumption</h4>
           {this.props.home.types.map(t =>
             <button key={t.id} onClick={this.props.createLogConsumptionOnClick(t)}>{t.name}</button>
           )}
+          <button className={undoButtonClasses} onClick={this.props.createUndoLogConsumptionOnClick()}>Undo</button>
         </div>
-        <div className={classes.row}>
+        <div className="row">
           <div className="one-half column">
             <ConsumptionTable log={this.props.home.log}/>
           </div>

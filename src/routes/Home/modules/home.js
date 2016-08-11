@@ -1,3 +1,5 @@
+import { fetchGet, fetchPost, fetchDelete } from '../../../util/fetchUtil'
+
 // ------------------------------------
 // Constants
 // ------------------------------------
@@ -32,8 +34,7 @@ export function fetchTypes(payload = []) {
 export const fetchLogAsync = () => {
   return (dispatch) => {
     return new Promise((resolve) => {
-      fetch('/api/log')
-        .then(r => r.json())
+      fetchGet('/api/log')
         .then(log => {
           dispatch(fetchLog(log))
           resolve()
@@ -45,8 +46,7 @@ export const fetchLogAsync = () => {
 export const fetchLeaderboardAsync = () => {
   return (dispatch) => {
     return new Promise((resolve) => {
-      fetch('/api/leaderboard')
-        .then(r => r.json())
+      fetchGet('/api/leaderboard')
         .then(leaderboard => {
           dispatch(fetchLeaderboard(leaderboard))
           resolve()
@@ -58,8 +58,7 @@ export const fetchLeaderboardAsync = () => {
 export const fetchTypesAsync = () => {
   return (dispatch) => {
     return new Promise((resolve) => {
-      fetch('/api/type')
-        .then(r => r.json())
+      fetchGet('/api/type')
         .then(types => {
           dispatch(fetchTypes(types))
           resolve()
@@ -72,19 +71,21 @@ export const createLogConsumptionOnClick = (type) => {
   return () =>
     () => {
       return new Promise((resolve) => {
-        fetch('/api/log', {
-          method: 'POST',
-          body: JSON.stringify(type),
-          headers: new Headers({
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('jwt-token')}`
-          })
-        })
+        fetchPost('/api/log', type)
         resolve()
       })
     }
 }
 
+export const createUndoLogConsumptionOnClick = () => {
+  return () =>
+    () => {
+      return new Promise((resolve) => {
+        fetchDelete('/api/log/undo')
+        resolve()
+      })
+    }
+}
 export const actions = {
   fetchLog,
   fetchLogAsync,
