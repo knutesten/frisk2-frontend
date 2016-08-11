@@ -4,7 +4,7 @@ import classes from './HomeView.scss'
 class LeaderboardTable extends React.Component {
   render() {
     return (
-      <div>
+      <div className={classes.leaderboardTableContainer}>
         <h4>Leaderboard</h4>
         <table className="u-full-width">
           <thead>
@@ -21,7 +21,7 @@ class LeaderboardTable extends React.Component {
               <td>{i + 1}</td>
               <td>{e.user.username}</td>
               <td>{e.totalConsumption}</td>
-              <td className={classes.percentageColumn}>{(Math.round(e.percentageOfAllConsumption * 100) / 100).toFixed(2)}</td>
+              <td className={classes.percentageColumn}>{(Math.round(e.percentageOfAllConsumption * 100) / 100).toFixed(2)} %</td>
             </tr>
           )}
           </tbody>

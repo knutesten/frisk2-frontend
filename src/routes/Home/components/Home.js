@@ -11,10 +11,10 @@ class Home extends React.Component {
   }
 
   render() {
-    const logConsumptionContainerClasses = classes.logConsumptionContainer + " row";
+    const logConsumptionContainerClasses = `${classes.logConsumptionContainer} row`;
 
     return (
-      <div className="container">
+      <div>
         <div className={logConsumptionContainerClasses}>
           <h4>Log consumption</h4>
           {this.props.home.types.map(t =>

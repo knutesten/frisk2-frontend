@@ -1,9 +1,10 @@
 import React from 'react'
+import classes from './HomeView.scss'
 
 class ConsumptionTable extends React.Component {
   render() {
     return (
-      <div>
+      <div className={classes.consumptionTableContainer}>
         <h4>Recent consumption</h4>
         <table className="u-full-width">
           <thead>
