@@ -8,6 +8,18 @@ class Home extends React.Component {
     this.props.fetchLogAsync()
     this.props.fetchLeaderboardAsync()
     this.props.fetchTypesAsync()
+
+    this.socket = new WebSocket(`ws://localhost:8080/api/update`);
+    this.socket.onmessage = (message) => {
+      if (message.data === 'update') {
+        this.props.fetchLeaderboardAsync()
+        this.props.fetchLogAsync()
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    this.socket.close()
   }
 
   render() {

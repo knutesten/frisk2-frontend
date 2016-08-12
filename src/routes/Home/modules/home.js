@@ -86,6 +86,7 @@ export const createUndoLogConsumptionOnClick = () => {
       })
     }
 }
+
 export const actions = {
   fetchLog,
   fetchLogAsync,
