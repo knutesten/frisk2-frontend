@@ -1,5 +1,6 @@
 // We only need to import the modules necessary for initial render
 import CoreLayout from '../layouts/CoreLayout/CoreLayout'
+import MyStatsRoute from './MyStats'
 import HomeRoute from './Home'
 import CounterRoute from './Counter'
 import Unauthorized from './Unauthorized'
@@ -15,6 +16,7 @@ export const createRoutes = (store) => ({
   onEnter: authenticateUser(store),
   childRoutes: [
     CounterRoute(store),
+    MyStatsRoute(store),
     Unauthorized
   ]
 })
