@@ -33,13 +33,6 @@ export default {
       chunkModules: true,
       colors: true
     },
-    proxy: {
-      enabled: true,
-      options: {
-        host: 'http://frisk-backend.herokuapp.com',
-        match: /^\/api\/.*/
-      }
-    },
-    websocketTarget: 'ws://frisk-backend.herokuapp.com/api/update'
+    websocketTarget: 'ws://frisk2.herokuapp.com/api/update'
   })
 }
