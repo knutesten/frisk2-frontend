@@ -139,6 +139,15 @@ webpackConfig.module.loaders = [{
 {
   test: /\.json$/,
   loader: 'json'
+},
+// TODO: Replace this hack with redirection of websocket connection
+{
+  test: /\/Home\.js$/,
+  loader: 'webpack-replace',
+  query: {
+    search: '${websocketTarget}',
+    replace: config.websocketTarget
+  }
 }]
 
 // ------------------------------------

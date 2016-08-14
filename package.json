@@ -162,6 +162,7 @@
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.6.0"
+    "webpack-hot-middleware": "^2.6.0",
+    "webpack-replace": "^1.0.0"
   }
 }

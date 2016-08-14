@@ -9,7 +9,7 @@ class Home extends React.Component {
     this.props.fetchLeaderboardAsync()
     this.props.fetchTypesAsync()
 
-    this.socket = new WebSocket(`ws://localhost:8080/api/update`);
+    this.socket = new WebSocket("${websocketTarget}");
     this.socket.onmessage = (message) => {
       if (message.data === 'update') {
         this.props.fetchLeaderboardAsync()

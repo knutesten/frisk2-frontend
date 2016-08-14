@@ -16,7 +16,8 @@ export default {
         host: 'http://localhost:8080',
         match: /^\/api\/.*/
       }
-    }
+    },
+    websocketTarget: 'ws://localhost:8080/api/update'
   }),
 
   // ======================================================
@@ -31,6 +32,14 @@ export default {
       chunks: true,
       chunkModules: true,
       colors: true
-    }
+    },
+    proxy: {
+      enabled: true,
+      options: {
+        host: 'http://frisk-backend.herokuapp.com',
+        match: /^\/api\/.*/
+      }
+    },
+    websocketTarget: 'ws://frisk-backend.herokuapp.com/api/update'
   })
 }
