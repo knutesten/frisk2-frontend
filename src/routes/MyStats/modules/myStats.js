@@ -47,8 +47,6 @@ const ACTION_HANDLERS = {
       data[0].values[hours].y = data[0].values[hours].y + e.type.amount
     })
 
-    console.log(data);
-
     return {...state, todaysConsumption: data}
   },
 }

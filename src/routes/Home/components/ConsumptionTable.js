@@ -1,5 +1,6 @@
 import React from 'react'
 import classes from './HomeView.scss'
+import moment from 'moment'
 
 class ConsumptionTable extends React.Component {
   render() {
@@ -19,7 +20,7 @@ class ConsumptionTable extends React.Component {
             <tr key={e.id}>
               <td>{e.user.username}</td>
               <td>{e.type.name}</td>
-              <td>{new Date(e.date).toISOString().slice(0,19).replace('T', ' ')}</td>
+              <td>{moment(e.date).format('YYYY-MM-DD HH:mm')}</td>
             </tr>
           )}
           </tbody>
