@@ -9,11 +9,14 @@ class Home extends React.Component {
     this.props.fetchLeaderboardAsync()
     this.props.fetchTypesAsync()
 
-    this.socket = new WebSocket("${websocketTarget}");
+    const ding = new Audio('/ding.wav')
+
+    this.socket = new WebSocket("${websocketTarget}")
     this.socket.onmessage = (message) => {
       if (message.data === 'update') {
         this.props.fetchLeaderboardAsync()
         this.props.fetchLogAsync()
+        ding.play()
       }
     }
   }
