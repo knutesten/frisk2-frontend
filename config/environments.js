@@ -33,6 +33,6 @@ export default {
       chunkModules: true,
       colors: true
     },
-    websocketTarget: 'ws://frisk2.herokuapp.com/api/update'
+    websocketTarget: 'ws://frisk.site/api/update'
   })
 }
