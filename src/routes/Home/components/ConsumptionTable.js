@@ -20,7 +20,7 @@ class ConsumptionTable extends React.Component {
             <tr key={e.id}>
               <td>{e.user.username}</td>
               <td>{e.type.name}</td>
-              <td>{moment(e.date).format('YYYY-MM-DD HH:mm')}</td>
+              <td>{moment(e.date).format('YYYY-MM-DD HH:mm:ss')}</td>
             </tr>
           )}
           </tbody>
