@@ -14,7 +14,9 @@ export function fetchPost(url, body) {
 export function fetchGet(url) {
   return fetch(url, {
     headers: createDefaultHeaders()
-  }).then(r => r.json())
+  })
+    .then(res => res.ok ? Promise.resolve(res) : Promise.reject())
+    .then(r => r.json())
 }
 
 export function fetchDelete(url) {
