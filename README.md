@@ -9,7 +9,7 @@
 ## Installation and setup
 
 ### Run frontend for development
-- `npm run serve` (hosts static files on localhost:3000, and will automatically proxy api requests to localhost:8080)
+- `npm start` (hosts static files on localhost:3000, and will automatically proxy api requests to localhost:8080)
 
 ### Build for production
 - `npm install`
