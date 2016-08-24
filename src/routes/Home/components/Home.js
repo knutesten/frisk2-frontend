@@ -3,26 +3,50 @@ import ConsumptionTable from './ConsumptionTable'
 import LeaderboardTable from './LeaderboardTable'
 import classes from './HomeView.scss'
 
+
+const connectToWs = (onmessage, onreconnect) => {
+  let socket
+  let reconnect = false
+
+  const connect = () => {
+    socket = new WebSocket("${websocketTarget}")
+    socket.onmessage = onmessage
+    socket.onopen = () => { if (reconnect) onreconnect() }
+    socket.onclose = e => {
+      if (e.code !== 1005) {
+        reconnect = true
+        setTimeout(connect, 3000)
+      }
+    }
+  }
+  connect()
+  return { close: () =>  { if (socket) socket.close() } }
+}
+
 class Home extends React.Component {
   componentDidMount() {
-    this.props.fetchLogAsync()
-    this.props.fetchLeaderboardAsync()
+    const update = () => {
+      this.props.fetchLogAsync()
+      this.props.fetchLeaderboardAsync()
+    }
+    update()
     this.props.fetchTypesAsync()
 
     const ding = new Audio('/ding.wav')
 
-    this.socket = new WebSocket("${websocketTarget}")
-    this.socket.onmessage = (message) => {
-      if (message.data === 'update') {
-        this.props.fetchLeaderboardAsync()
-        this.props.fetchLogAsync()
-        ding.play()
-      }
-    }
+    this.wsConn = connectToWs(
+      message => {
+        if (message.data === 'update') {
+          update()
+          ding.play()
+        }
+      },
+      update
+    )
   }
 
   componentWillUnmount() {
-    this.socket.close()
+    this.wsConn.close()
   }
 
   render() {
