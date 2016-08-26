@@ -1,10 +1,6 @@
-import { fetchGet } from '../../util/fetchUtil'
-
 export function authenticateUser() {
   return (nextState, replace, callback) => {
-    if (localStorage.getItem("jwt-token") || nextState.location.pathname === '/unauthorized') {
-      callback()
-    } else if (nextState.location.query.code) {
+    if (nextState.location.query.code) {
       getJwtTokenForCode(nextState.location.query)
         .then(auth => {
           replace(nextState.location.pathname)
@@ -16,17 +12,11 @@ export function authenticateUser() {
           callback()
         })
     } else {
-      redirectToOpenIdConnectAuthentication()
+      callback()
     }
   }
 }
 
-const redirectToOpenIdConnectAuthentication = (callback) =>
-  fetchGet('/api/auth/login')
-    .then((url) => {
-      window.location = url
-    })
-
-const getJwtTokenForCode = query => fetchGet(`/api/auth/token?code=${query.code}&state=${query.state}`)
-
-
+const getJwtTokenForCode = query => fetch(`/api/auth/token?code=${query.code}&state=${query.state}`)
+  .then(r => r.ok ? Promise.resolve(r) : Promise.reject(r))
+  .then(r => r.json())
