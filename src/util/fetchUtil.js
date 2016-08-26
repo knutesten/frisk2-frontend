@@ -42,3 +42,11 @@ export function fetchDelete(url) {
   })
     .then(redirectIfUnauthorized)
 }
+
+export function fetchPut(url) {
+  return fetch(url, {
+    headers: createDefaultHeaders()
+  })
+    .then(redirectIfUnauthorized)
+    .then(r => r.json())
+}
