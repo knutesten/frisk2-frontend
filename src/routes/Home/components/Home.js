@@ -28,6 +28,7 @@ class Home extends React.Component {
     const update = () => {
       this.props.fetchLogAsync()
       this.props.fetchLeaderboardAsync()
+      this.props.fetchTotalConsumptionAsync()
     }
     update()
     this.props.fetchTypesAsync()
@@ -54,6 +55,10 @@ class Home extends React.Component {
 
     return (
       <div>
+        <div>
+          <h4>Total consumption</h4>
+          <div className={classes.totalConsumption}>{this.props.home.totalConsumption}</div>
+        </div>
         <div className={classes.logConsumptionContainer}>
           <h4>Log consumption</h4>
           {this.props.home.types.map(t =>

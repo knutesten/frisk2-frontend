@@ -6,6 +6,7 @@ import { fetchGet, fetchPost, fetchDelete } from '../../../util/fetchUtil'
 export const FETCH_LOG = 'FETCH_LOG'
 export const FETCH_TYPES = 'FETCH_TYPE'
 export const FETCH_LEADERBOARD = 'FETCH_LEADERBOARD'
+export const FETCH_TOTAL_CONSUMPTION = 'FETCH_TOTAL_CONSUMPTION'
 
 // ------------------------------------
 // Actions
@@ -27,6 +28,13 @@ export function fetchLeaderboard(payload = []) {
 export function fetchTypes(payload = []) {
   return {
     type: FETCH_TYPES,
+    payload
+  }
+}
+
+export function fetchTotalConsumption(payload) {
+  return {
+    type: FETCH_TOTAL_CONSUMPTION,
     payload
   }
 }
@@ -67,6 +75,15 @@ export const fetchTypesAsync = () => {
   }
 }
 
+export const fetchTotalConsumptionAsync = () =>
+  dispatch =>
+    new Promise(resolve =>
+      fetchGet('/api/log/total')
+        .then(total => {
+          dispatch(fetchTotalConsumption(total))
+          resolve()
+        }))
+
 export const createLogConsumptionOnClick = (type) => {
   return () =>
     () => {
@@ -102,7 +119,8 @@ export const actions = {
 const ACTION_HANDLERS = {
   [FETCH_LOG]: (state, action) => ({...state, log: action.payload}),
   [FETCH_LEADERBOARD]: (state, action) => ({...state, leaderboard: action.payload}),
-  [FETCH_TYPES]: (state, action) => ({...state, types: action.payload})
+  [FETCH_TYPES]: (state, action) => ({...state, types: action.payload}),
+  [FETCH_TOTAL_CONSUMPTION]: (state, action) => ({...state, totalConsumption: action.payload})
 }
 
 // ------------------------------------
