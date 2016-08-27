@@ -25,3 +25,26 @@
   margin-top: -6rem;
   font-size: 11rem;
 }
+
+
+.leetAnimation {
+  .dateCont {
+    position:absolute;
+    margin-top: -1.5rem;
+    animation-name: leet;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes leet {
+  0% {
+  }
+  50% {
+    margin-top: -1.8rem;
+    font-weight: bold;
+    font-size: 2.2rem
+  }
+  100% {
+  }
+}

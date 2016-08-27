@@ -4,6 +4,10 @@ import moment from 'moment'
 
 class ConsumptionTable extends React.Component {
   render() {
+    const add1337Animation = date => {
+      const formattedDate = moment(date).format('HHmmss')
+      return formattedDate === '133700' || formattedDate === '133337' ? classes.leetAnimation : undefined
+    }
     return (
       <div className={classes.consumptionTableContainer}>
         <h4>Recent consumption</h4>
@@ -17,10 +21,10 @@ class ConsumptionTable extends React.Component {
           </thead>
           <tbody>
           {this.props.log.map(e =>
-            <tr key={e.id}>
+            <tr key={e.id}  className={add1337Animation(e.date)}>
               <td>{e.user.username}</td>
               <td>{e.type.name}</td>
-              <td>{moment(e.date).format('YYYY-MM-DD HH:mm:ss')}</td>
+              <td><div className={classes.dateCont}>{moment(e.date).format('YYYY-MM-DD HH:mm:ss')}</div></td>
             </tr>
           )}
           </tbody>
