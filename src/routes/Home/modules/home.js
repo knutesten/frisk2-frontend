@@ -94,24 +94,13 @@ export const createLogConsumptionOnClick = (type) => {
     }
 }
 
-export const createUndoLogConsumptionOnClick = () => {
-  return () =>
-    () => {
-      return new Promise((resolve) => {
-        fetchDelete('/api/log/undo')
-        resolve()
-      })
-    }
-}
-
-export const actions = {
-  fetchLog,
-  fetchLogAsync,
-  fetchLeaderboard,
-  fetchLeaderboardAsync,
-  fetchTypes,
-  fetchTypesAsync
-}
+export const undoLogConsumptionOnClick = () =>
+  () => {
+    return new Promise((resolve) => {
+      fetchDelete('/api/log/undo')
+      resolve()
+    })
+  }
 
 // ------------------------------------
 // Action Handlers

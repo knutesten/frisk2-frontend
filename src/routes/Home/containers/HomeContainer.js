@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 import { fetchLogAsync, fetchLeaderboardAsync, fetchTypesAsync, fetchTotalConsumptionAsync, createLogConsumptionOnClick,
-  createUndoLogConsumptionOnClick} from '../modules/home'
+  undoLogConsumptionOnClick} from '../modules/home'
 
-import Home from '../components/Home'
+import Home from '../../../components/Home/Home'
 
 const mapActionCreators = {
   fetchLogAsync,
@@ -10,7 +10,7 @@ const mapActionCreators = {
   fetchTypesAsync,
   createLogConsumptionOnClick,
   fetchTotalConsumptionAsync,
-  createUndoLogConsumptionOnClick
+  undoLogConsumptionOnClick
 }
 
 const mapStateToProps = (state) => ({
