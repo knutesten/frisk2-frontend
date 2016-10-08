@@ -3,13 +3,13 @@ import { fetchGet } from '../../../util/fetchUtil'
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const FETCH_TODAYS_CONSUMPTION = 'FETCH_TODAYS_CONSUMPTION';
+export const FETCH_TODAYS_CONSUMPTION = 'FETCH_TODAYS_CONSUMPTION'
 
 // ------------------------------------
 // Actions
 // ------------------------------------
 
-export function fetchTodaysConsumption(payload = []) {
+export function fetchTodaysConsumption (payload = []) {
   return {
     type: FETCH_TODAYS_CONSUMPTION,
     payload
@@ -35,7 +35,7 @@ const ACTION_HANDLERS = {
     })
 
     return {...state, todaysConsumption: data}
-  },
+  }
 }
 
 // ------------------------------------

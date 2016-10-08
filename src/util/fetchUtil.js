@@ -11,13 +11,13 @@ const redirectToOpenIdConnectAuthentication = () =>
 
 const redirectIfUnauthorized = r => {
   if (r.status === 403 || r.status === 401) {
-    localStorage.removeItem("jwt-token")
+    localStorage.removeItem('jwt-token')
     redirectToOpenIdConnectAuthentication()
   }
   return Promise.resolve(r)
 }
 
-export function fetchPost(url, body) {
+export function fetchPost (url, body) {
   return fetch(url, {
     method: 'POST',
     body: JSON.stringify(body),
@@ -27,7 +27,7 @@ export function fetchPost(url, body) {
     .then(r => r.json())
 }
 
-export function fetchGet(url) {
+export function fetchGet (url) {
   return fetch(url, {
     headers: createDefaultHeaders()
   })
@@ -35,7 +35,7 @@ export function fetchGet(url) {
     .then(r => r.json())
 }
 
-export function fetchDelete(url) {
+export function fetchDelete (url) {
   return fetch(url, {
     method: 'DELETE',
     headers: createDefaultHeaders()
@@ -43,7 +43,7 @@ export function fetchDelete(url) {
     .then(redirectIfUnauthorized)
 }
 
-export function fetchPut(url) {
+export function fetchPut (url) {
   return fetch(url, {
     method: 'PUT',
     headers: createDefaultHeaders()

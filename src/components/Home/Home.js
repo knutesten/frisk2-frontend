@@ -4,9 +4,8 @@ import LeaderboardTable from './LeaderboardTable'
 import classes from './HomeView.scss'
 import consumptionUpdates from './consumptionUpdates'
 
-
 class Home extends React.Component {
-  componentDidMount() {
+  componentDidMount () {
     this.props.fetchTypesAsync()
 
     const update = () => {
@@ -19,11 +18,11 @@ class Home extends React.Component {
     this.consumptionUpdateSubscription = consumptionUpdates.subscribe(update)
   }
 
-  componentWillUnmount() {
-    this.consumptionUpdateSubscription.unsubscribe();
+  componentWillUnmount () {
+    this.consumptionUpdateSubscription.unsubscribe()
   }
 
-  render() {
+  render () {
     const {
       createLogConsumptionOnClick,
       undoLogConsumptionOnClick,
@@ -50,12 +49,12 @@ class Home extends React.Component {
           <h4>Total consumption</h4>
           <div className={classes.totalConsumption}>{totalConsumption}</div>
         </div>
-        <div className="row">
-          <div className="one-half column">
-            <ConsumptionTable log={log}/>
+        <div className='row'>
+          <div className='one-half column'>
+            <ConsumptionTable log={log} />
           </div>
-          <div className="one-half column">
-            <LeaderboardTable leaderboard={leaderboard}/>
+          <div className='one-half column'>
+            <LeaderboardTable leaderboard={leaderboard} />
           </div>
         </div>
       </div>

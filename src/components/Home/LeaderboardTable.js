@@ -5,7 +5,7 @@ const LeaderboardTable = ({ leaderboard }) => {
   return (
     <div className={classes.leaderboardTableContainer}>
       <h4>Leaderboard</h4>
-      <table className="u-full-width">
+      <table className='u-full-width'>
         <thead>
         <tr>
           <th>#</th>

@@ -11,28 +11,28 @@ export const FETCH_TOTAL_CONSUMPTION = 'FETCH_TOTAL_CONSUMPTION'
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function fetchLog(payload = []) {
+export function fetchLog (payload = []) {
   return {
     type: FETCH_LOG,
     payload
   }
 }
 
-export function fetchLeaderboard(payload = []) {
+export function fetchLeaderboard (payload = []) {
   return {
     type: FETCH_LEADERBOARD,
     payload
   }
 }
 
-export function fetchTypes(payload = []) {
+export function fetchTypes (payload = []) {
   return {
     type: FETCH_TYPES,
     payload
   }
 }
 
-export function fetchTotalConsumption(payload) {
+export function fetchTotalConsumption (payload) {
   return {
     type: FETCH_TOTAL_CONSUMPTION,
     payload
@@ -41,7 +41,7 @@ export function fetchTotalConsumption(payload) {
 
 export const fetchLogAsync = () => dispatch =>
   fetchGet('/api/log')
-    .then(log =>  dispatch(fetchLog(log)))
+    .then(log => dispatch(fetchLog(log)))
 
 export const fetchLeaderboardAsync = () => dispatch =>
       fetchGet('/api/leaderboard')

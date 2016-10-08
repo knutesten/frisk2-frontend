@@ -1,8 +1,8 @@
 import { fetchPut } from '../../util/fetchUtil'
 
-const JWT_TOKEN_KEY = "jwt-token";
+const JWT_TOKEN_KEY = 'jwt-token'
 
-export function authenticateUser() {
+export function authenticateUser () {
   if (localStorage.getItem(JWT_TOKEN_KEY)) {
     refreshJwtToken()
   }
@@ -12,7 +12,7 @@ export function authenticateUser() {
       getJwtTokenForCode(nextState.location.query)
         .then(auth => {
           replace(nextState.location.pathname)
-          localStorage.setItem(JWT_TOKEN_KEY, auth.jwtToken);
+          localStorage.setItem(JWT_TOKEN_KEY, auth.jwtToken)
           callback()
         })
         .catch(() => {
@@ -30,4 +30,4 @@ const getJwtTokenForCode = query => fetch(`/api/auth/token?code=${query.code}&st
   .then(r => r.json())
 
 const refreshJwtToken = () => fetchPut('/api/auth/token')
-  .then(auth => localStorage.setItem(JWT_TOKEN_KEY, auth.jwtToken));
+  .then(auth => localStorage.setItem(JWT_TOKEN_KEY, auth.jwtToken))
