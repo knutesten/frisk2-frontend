@@ -5,7 +5,7 @@ export default {
     const ding = new Audio('/ding.wav')
 
     const connect = () => {
-      socket = new WebSocket("${websocketTarget}")
+      socket = new WebSocket("${websocketTarget}/update")
       socket.onmessage = message => {
         if (message.data === 'update') {
           update()

@@ -17,7 +17,7 @@ export default {
         match: /^\/api\/.*/
       }
     },
-    websocketTarget: 'ws://localhost:8080/api/update'
+    websocketTarget: 'ws://localhost:8080/api'
   }),
 
   // ======================================================
@@ -33,6 +33,6 @@ export default {
       chunkModules: true,
       colors: true
     },
-    websocketTarget: 'wss://frisk.site/api/update'
+    websocketTarget: 'wss://frisk.site/api'
   })
 }

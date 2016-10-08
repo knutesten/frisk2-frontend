@@ -19,7 +19,7 @@ describe('(Component) Header', () => {
 
   describe('Navigation links...', () => {
 
-    it('Should render a Link to Home route', () => {
+    it('Should render a Link to CoreLayout route', () => {
       expect(_wrapper.contains(
         <IndexLink activeClassName={classes.activeRoute} to='/'>
           Home
