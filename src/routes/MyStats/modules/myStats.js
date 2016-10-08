@@ -16,22 +16,9 @@ export function fetchTodaysConsumption(payload = []) {
   }
 }
 
-export const fetchTodaysConsumptionAsync = () => {
-  return (dispatch) => {
-    return new Promise((resolve) => {
+export const fetchTodaysConsumptionAsync = () => dispatch =>
       fetchGet('/api/log/today')
-        .then(todaysConsumption => {
-          dispatch(fetchTodaysConsumption(todaysConsumption))
-          resolve()
-        })
-    })
-  }
-}
-
-export const actions = {
-  fetchTodaysConsumption,
-  fetchTodaysConsumptionAsync
-}
+        .then(todaysConsumption => dispatch(fetchTodaysConsumption(todaysConsumption)))
 
 // ------------------------------------
 // Action Handlers
