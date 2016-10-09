@@ -11,7 +11,7 @@ const ConsumptionTable = ({ log }) => {
   return (
     <div className={classes.consumptionTableContainer}>
       <h4>Recent consumption</h4>
-      <table className="u-full-width">
+      <table className='u-full-width'>
         <thead>
         <tr>
           <th>User</th>
@@ -21,7 +21,7 @@ const ConsumptionTable = ({ log }) => {
         </thead>
         <tbody>
         {log.map(e =>
-          <tr key={e.id}  className={add1337Animation(e.date)}>
+          <tr key={e.id} className={add1337Animation(e.date)}>
             <td>{e.user.username}</td>
             <td>{e.type.name}</td>
             <td><div className={classes.dateCont}>{moment(e.date).format('YYYY-MM-DD HH:mm:ss')}</div></td>

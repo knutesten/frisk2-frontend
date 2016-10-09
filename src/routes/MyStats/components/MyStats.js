@@ -3,11 +3,11 @@ import classes from './MyStats.scss'
 import { BarChart } from 'rd3'
 
 class MyStats extends React.Component {
-  componentDidMount() {
+  componentDidMount () {
     this.props.fetchTodaysConsumptionAsync()
   }
 
-  render() {
+  render () {
     return (
       <div>
         <div>

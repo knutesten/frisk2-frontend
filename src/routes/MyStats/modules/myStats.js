@@ -3,35 +3,22 @@ import { fetchGet } from '../../../util/fetchUtil'
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const FETCH_TODAYS_CONSUMPTION = 'FETCH_TODAYS_CONSUMPTION';
+export const FETCH_TODAYS_CONSUMPTION = 'FETCH_TODAYS_CONSUMPTION'
 
 // ------------------------------------
 // Actions
 // ------------------------------------
 
-export function fetchTodaysConsumption(payload = []) {
+export function fetchTodaysConsumption (payload = []) {
   return {
     type: FETCH_TODAYS_CONSUMPTION,
     payload
   }
 }
 
-export const fetchTodaysConsumptionAsync = () => {
-  return (dispatch) => {
-    return new Promise((resolve) => {
+export const fetchTodaysConsumptionAsync = () => dispatch =>
       fetchGet('/api/log/today')
-        .then(todaysConsumption => {
-          dispatch(fetchTodaysConsumption(todaysConsumption))
-          resolve()
-        })
-    })
-  }
-}
-
-export const actions = {
-  fetchTodaysConsumption,
-  fetchTodaysConsumptionAsync
-}
+        .then(todaysConsumption => dispatch(fetchTodaysConsumption(todaysConsumption)))
 
 // ------------------------------------
 // Action Handlers
@@ -48,7 +35,7 @@ const ACTION_HANDLERS = {
     })
 
     return {...state, todaysConsumption: data}
-  },
+  }
 }
 
 // ------------------------------------

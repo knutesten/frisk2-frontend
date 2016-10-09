@@ -1,11 +1,11 @@
 export default {
-  subscribe(update){
+  subscribe (update) {
     let socket
     let reconnect = false
     const ding = new Audio('/ding.wav')
 
     const connect = () => {
-      socket = new WebSocket("${websocketTarget}/update")
+      socket = new WebSocket('${websocketTarget}/update')
       socket.onmessage = message => {
         if (message.data === 'update') {
           update()
@@ -21,6 +21,6 @@ export default {
       }
     }
     connect()
-    return { unsubscribe() { if (socket) socket.close() } }
+    return { unsubscribe () { if (socket) socket.close() } }
   }
 }
