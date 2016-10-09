@@ -11,6 +11,7 @@ const redirectToOpenIdConnectAuthentication = () =>
 
 const redirectIfUnauthorized = r => {
   if (r.status === 403 || r.status === 401) {
+    document.getElementById('root').style.opacity = 0;
     localStorage.removeItem('jwt-token')
     redirectToOpenIdConnectAuthentication()
   }
